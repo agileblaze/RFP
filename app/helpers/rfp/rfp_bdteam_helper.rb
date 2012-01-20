@@ -1,0 +1,2 @@
+module Rfp::RfpBdteamHelper
+end

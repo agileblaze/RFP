@@ -1,0 +1,26 @@
+<h3><u><%=h @project.project_name %>'s RFP and Related Documents</u> </h3><br />
+<ul>
+  <% i=0 %>
+  <% @doc.each do |doc| %>
+  <% i=i+1 %>
+  <li><h3 style="display:inline">  RFP Document</h3><br /></li>
+  <%= link_to doc.filename, doc.public_filename, :target => '_blank' %><br /><br />
+  <% if doc.project_description!= '' %>
+    <div id=<%=i %> >
+      <u>Description :</u><%= doc.project_description[0,100] %><%= link_to_function("+","Element.remove('#{i}'); Element.show('#{i+1000}')")%>
+    </div>
+  <% end %>
+  <div id=<%=i+1000%> style="display:none"> <u>Description :</u><%= doc.project_description %></div>
+  <br /><br /><br />
+  <% end %>
+
+
+
+  <%  @doc_rel.each do |doc| %>
+    <li><h3 style="display:inline"><% if doc.status=='srs' %>SRS Document <% else if doc.status=='est'%>Estimate Document<% else %>Other document <% end %> <% end %> </h3> </li><br></br>
+    <%= link_to doc.filename, doc.public_filename, :target => '_blank' %>
+    <% if doc.comment!= '' %><div id=<%= doc.id+10000 %> ><u>Description :</u><%= doc.comment[0,30]  %><%= link_to_function("+","Element.remove('#{doc.id+10000}'); Element.show('#{doc.id+20000}')")%></div><% end %>
+    <div id=<%= doc.id+20000 %>  style="display:none"> <u>Description :</u><%= doc.comment %></div>
+    <br /><br /><br />
+  <% end %>
+</ul>

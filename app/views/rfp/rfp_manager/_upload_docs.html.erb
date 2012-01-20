@@ -1,0 +1,20 @@
+<h3><u>Upload documents of project-<%=h @project.project_name %></u> </h3><br />
+
+<%#= link_to_remote("Upload SRS Documents",:update=>"upload",:url=>{:action=>"upload_docs",:id=>doc.id },:position=>"") %>
+<% form_for @rfp_document,:url =>{:action=>"save_a",:id=>@project.id}, :html => {:multipart => true} do |f| %>
+  <table>
+    <tr><th>SRS :</th><td><%= radio_button_tag(:type, "srs") %>   </td></tr>
+    <tr><th>Estimate :</th><td><%= radio_button_tag(:type, "est") %>  </td></tr>
+    <tr><th>Other :</th><td><%= radio_button_tag(:type, "other") %>   </td></tr>
+    <tr>
+      <th>RFP :</th><td> <%= f.file_field :uploaded_data  %> </td><th></th>
+    </tr>
+    <tr>
+      <th>Description :</th><td> <%#= f.text_area :comment,:size=> "50pt x10pt"  %>
+                                 <%= fckeditor_textarea("rfp_document", "comment", :toolbarSet => 'Simple', :width => '200%', :height => '500px') %>  </td><th></th>
+    </tr>
+    <tr>
+      <th></th><td><input type="submit" value="Upload"/> </td><th></th>
+    </tr>
+  </table>
+<% end %>

@@ -1,0 +1,2 @@
+module Installer::DashboardHelper
+end

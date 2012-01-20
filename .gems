@@ -1,0 +1,4 @@
+capistrano --version=2.5.19
+capistrano-ext --version=1.2.1
+post_commit
+whenever

@@ -1,0 +1,27 @@
+<% content_for :header do -%>
+  <%= configatron.site_name %> Users
+<% end -%>
+
+<% content_for :sidebar do -%>
+<ul>
+		<li><%= link_to "View all RFP",index_rfp_rfp_bdteam_path  %></li>
+		<li><%= link_to "Upload RFP", upload_rfp_rfp_bdteam_path %></li>
+		<li><%= link_to "Remove RFP",manage_rfp_rfp_rfp_bdteam_path %></li>
+		<li><%#= link_to "Pending users only", pending_admin_users_url %></li>
+		<li><%#= link_to "Deleted users only", deleted_admin_users_url %></li>
+	</ul>
+<% end -%>
+  <table class="index">
+    <tr>
+      <th>Project Name</th><th>DELETE</th>
+    </tr>
+    <% @doc.each do |doc| %>
+    <tr>
+      <td><%#=h doc.project_name %><%= link_to_remote("#{doc.project_name}",:update=>"view",:url=>{:action=>"remove_docs",:id=>doc.id },:position=>"") %></td>
+      <td><%= link_to "Delete",delete_rfp_rfp_rfp_bdteam_path(:id=>doc.id),:confirm=>"Do you want to clean all data under this project #{doc.project_name} ?" %>    </td>
+    </tr>
+   <%#= link_to doc.filename, doc.public_filename, :target => '_blank' %><br />
+   <% end %>
+  </table>
+  <div id="view">
+  </div>

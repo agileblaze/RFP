@@ -1,0 +1,21 @@
+
+<h3>Upload new RFP Document of <%= @project.project_name %></h3>
+
+<% form_for @rfp,:url =>{:action=>"add_rfp",:id=>@project.id}, :html => {:multipart => true} do |f| %>
+  <table>
+    <tr>
+      <th>File :</th><td><%= f.file_field :uploaded_data  %></td>
+    </tr>
+     <tr>
+      <th>Description :</th><td> <%#= f.text_area :project_description,:size=> "50pt x10pt"  %>
+                                 <div id="<%= fckeditor_div_id('rfp', 'project_description') %>">
+                                 <%= fckeditor_textarea("rfp", "project_description", :toolbarSet => 'Simple', :width => '200%', :height => '500px') %>
+                                 </div>
+                                 <%#= f.fckeditor_textarea( "project_description") %></td>
+    </tr>
+    <tr>
+      <th></th><td><input type="submit" value="Modify"/> </td>
+    </tr>
+  </table>
+<% end %>
+

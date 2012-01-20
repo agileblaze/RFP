@@ -1,0 +1,31 @@
+<% content_for :header do -%>
+	All Group Members
+<% end -%>
+
+  <% content_for :sidebar do -%>
+	<ul>
+		<li><%= link_to "All Group Members", all_group_admin_groups_path %></li>
+		<li><%= link_to "Admin Group Members", admin_group_admin_groups_url %></li>
+		<li><%= link_to "BusinessAdmin Group Members", bdteam_group_admin_groups_url %></li>
+		<li><%= link_to "Manager Group Members", manager_group_admin_groups_url %></li>
+		<li><%= link_to "Developer Group Members", developer_group_admin_groups_url %></li>
+	</ul>
+<% end -%>
+  <% if @count>0 %>
+        <table class="index">
+           <tr>
+	    <th>User</th>
+	    <th>Email</th>
+	    <th>Status</th>
+           </tr>
+           <% @data.each do |a| %>
+           <tr>
+             <td><%=h a.login  %> </td>
+             <td><%=h a.email  %> </td>
+             <td><%=h a.state %> </td>
+           </tr>
+          <% end %>
+        </table>
+   <% else %>
+        <h3>No data.......</h3>
+   <% end  %>

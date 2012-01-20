@@ -1,0 +1,44 @@
+<% content_for :header do -%>
+Create a new <%= configatron.site_name %> account
+<% end -%>
+
+<% content_for :sidebar do -%>
+
+<p>
+	<strong>This account will not be activated by default!</strong>
+</p>	
+
+<p>
+	The user will receive an email with activation instructions. If you want
+	to activate the account, you can do this manually later.
+</p>
+<% end -%>
+
+<%#= error_messages_for :user %>
+
+
+
+
+
+<% form_tag(:action=>"create_new", :method=>"get") do %>
+<%= error_messages_for :user , :header_message => "Invalid Entry!",:message => "Data not Saved.You'll need to fix the following fields:"%>
+<p><label for="login">Login</label><br/>
+<%= text_field :user,:login %></p>
+
+<p><label for="email">Email</label><br/>
+<%= text_field :user,:email %></p>
+
+<p><label for="group">Group</label><br/>
+<%= collection_select(:user,:role_id, Role.all(:conditions=>["id!=?",1]), :id, :name,{:include_blank=>'select'}) %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field :user,:password %></p>
+
+<p><label for="password_confirmation">Confirm Password</label><br/>
+<%= password_field :user,:password_confirmation %></p>
+
+<input type="submit" value="Create" />
+
+<% end %>
+
+<%= link_to 'Back', admin_users_path %>

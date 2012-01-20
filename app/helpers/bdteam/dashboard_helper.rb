@@ -1,0 +1,2 @@
+module Bdteam::DashboardHelper
+end

@@ -1,0 +1,12 @@
+<ul>
+	<% if Setting.count > 0 %>
+	<li style="float: right;"><%= tab_to "Settings", [{:controller => "admin/settings"}] %></li>
+	<% end %>
+
+	<li><%= tab_to "Dashboard", [{:controller => "rfp/rfp_admin" }] %></li>
+	<li><%#= tab_to "Dashboard", [{:controller => "admin/dashboard"}] %></li>
+	<li><%= tab_to "Users", [{:controller => "admin/users"}] %></li>
+	<li><%= tab_to "Group", [{:controller => "admin/groups" }] %></li>
+	<li><%= tab_to "Module", [{:controller => "admin/module" }] %></li>
+        <li><%#= tab_to "Post-Commits", [{:controller => "admin/commits" }] %> </li>
+</ul>

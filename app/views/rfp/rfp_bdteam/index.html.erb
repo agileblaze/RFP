@@ -1,0 +1,66 @@
+<% content_for :header do -%>
+  <%= configatron.site_name %> Users
+<% end -%>
+<% content_for :sidebar do -%>
+         <ul>
+		<li><%= link_to "View all RFP",index_rfp_rfp_bdteam_path  %></li>
+		<li><%= link_to "Upload RFP", upload_rfp_rfp_bdteam_path %></li>
+		<li><%= link_to "Remove RFP",manage_rfp_rfp_rfp_bdteam_path %></li>
+		<li><%#= link_to "Pending users only", pending_admin_users_url %></li>
+		<li><%#= link_to "Deleted users only", deleted_admin_users_url %></li>
+	 </ul>
+<% end -%>
+  <table class="index" id="table">
+    <tr>
+      <th><%#= sort_td_class_helper "project_name" %>
+        <%= sort_link_helper "ProjectName", "project_name" %></th>
+      <th><%= sort_link_helper "Assigned TO", "assigned_to" %></th>
+      <th><%= sort_link_helper "Created BY", "created_by" %></th><th>
+        <%#= sort_td_class_helper "project_name" %>
+        <%= sort_link_helper "DeadLine", "deadline" %></th>
+      <th></th><th></th>
+    </tr>
+    <% @doc.each do |doc| %>
+    <tr>
+      <td> <%#=h doc.project_name %> <%= link_to_remote("#{doc.project_name}",:update=>"view",:url=>{:action=>"all_doc",:id=>doc.id },:position=>"") %></td>
+      <% if doc.assigned_to != nil %>
+      <% if User.count(:conditions=>["id=?",doc.assigned_to]) >0 %>
+      <% name=User.find(:first,:conditions=>["id=?",doc.assigned_to]) %>
+      <td><%=h name.login %></td>
+      <% else %>
+      <td><%=h "Not assigned" %></td>
+      <% end  %>
+      <% else %>
+      <td><%=h "Not assigned" %></td>
+      <%  end %>
+       <% if doc.created_by != nil %>
+      <% name=User.find(:first,:conditions=>["id=?",doc.created_by]) %>
+      <td><%=h  name.login %></td>
+      <% else %>
+        <td><%=h "Not assigned" %></td>
+      <% end %>
+      <td><%=h doc.deadline %></td>
+       <% if doc.created_by==current_user.id %>
+         <% if doc.assigned_to!=nil %>
+            <td><%= link_to_remote("Re-Assign",:update=>"modify",:url=>{:action=>"modify",:id=>doc.id },:position=>"") %></td>
+         <% else %>
+            <td><%= link_to_remote("Assign",:update=>"modify",:url=>{:action=>"modify",:id=>doc.id },:position=>"") %></td>
+         <%  end %>
+            <% if doc.assigned_to!=nil %>
+              <td><%= link_to_remote("Upload Docs",:update=>"upload",:url=>{:action=>"upload_rfp",:id=>doc.id },:position=>"") %> </td>
+            <% end %>
+       <% end %>
+
+      <% if doc.created_by==nil %>
+          <td><%= link_to_remote("Assign",:update=>"modify",:url=>{:action=>"modify",:id=>doc.id },:position=>"") %></td>
+      <% end %>
+    </tr>
+   <%#= link_to doc.filename, doc.public_filename, :target => '_blank' %><br />
+   <% end %>
+  </table>
+  <div id="view">
+  </div>
+  <div id="modify">    
+  </div>
+  <div id="upload"
+  </div>

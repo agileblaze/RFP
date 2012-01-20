@@ -1,0 +1,26 @@
+<h3>ASSIGN/REASSIGN <%=h @rfp.project_name %> project</h3><br />
+
+
+
+
+
+
+<% form_tag(:action=>"update_project",:method=>:get,:id=>@rfp.id) do %>
+<table>
+  <tr>
+    <th>Project Name :</th><td><%#=  text_area :rfp,:project_description,:size=> "50pt x10pt"  %><%= text_field :rfp,:project_name, :readonly=>'readonly' %>
+                              <%#= fckeditor_textarea("rfp", "project_description", :toolbarSet => 'Simple', :width => '200%', :height => '500px') %></td>
+  </tr>
+    <tr>
+      <th>AssignedTo :</th><td><%= collection_select :rfp,:assigned_to,User.all(:conditions=>["role_id=3 or role_id=4"]),:id,:login,{:include_blank=>'select'} %> </td>
+    </tr>
+    <tr>
+      <th> DeadLine :</th><td><%#= f.calendar_date_select :deadline  %><%= date_select :rfp,:deadline,{:start_year=>Time.now.year,:discard_year=>false } %>  </td>
+    </tr>
+    <tr>
+      <th></th><td><input type="submit" value="Modify"/> </td>
+    </tr>
+  </table>
+
+
+<% end %>

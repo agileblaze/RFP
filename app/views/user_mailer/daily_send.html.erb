@@ -1,0 +1,25 @@
+
+^^^^^^^^^^^^^   Daily MAil   ^^^^^^^^^^^^^^^^^^^^^^^^^<br /><br />
+Hello,</b> <br />
+
+<b>Project Name :<a href=http://<%= configatron.site_url %>/rfp/rfp_manager/index><%=h @user.project_name.capitalize %> </a> </b> <br /><br />
+
+
+Deadline :<%=h @user.deadline %>---Days remaining(<%=(Date.new(@user.deadline[0,4].to_i,@user.deadline[5,2].to_i,@user.deadline[8,2].to_i)-Date.today).to_i  %>)   <br /><br />
+<%#= cell_separator %>
+
+Created By :<% name=User.find(@user.created_by) %><%= name.login.capitalize %><br /><br />
+
+Assigned By :<% name=User.find(@user.assigned_by) %><%= name.login.capitalize %><br /><br />
+
+-------------------------------------------------------------------------------------------------------------------<br /><br />
+This Is Information From Site - <%= @site_name %> <br />
+<br /><br />
+ RFP of a project <%=h @user.project_name %> is assigned to you. Its deadline -<%=h @user.deadline%>  <br />
+
+
+ Please submit Its related Documents as soon as possible <br /><br />
+
+Best regards,
+<br />
+The <%= @site_name %> Team.

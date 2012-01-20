@@ -1,0 +1,47 @@
+<% content_for :header do -%>
+  <%= configatron.site_name %> RFPs
+<% end -%>
+<table class="index">
+    <tr>
+      <th> <%= sort_link_helper "ProjectName", "project_name" %></th>
+      <th><%= sort_link_helper "Created BY", "created_by" %></th>
+      <th><%= sort_link_helper "Assigned BY", "assigned_by" %></th>
+      <th><%= sort_link_helper "Assigned TO", "assigned_to" %></th>
+      <th><%= sort_link_helper "DeadLine", "deadline" %></th>
+      <th></th>
+    </tr>
+    <% @doc.each do |doc| %>
+    <tr>
+      <td> <%#=h doc.project_name %> <%= link_to_remote("#{doc.project_name}",:update=>"view",:url=>{:action=>"view_rfp",:id=>doc.id },:position=>"") %></td>
+       <% if doc.created_by != nil %>
+      <% name=User.find(:first,:conditions=>["id=?",doc.created_by]) %>
+      <td><%=h name.login %></td>
+      <% else %>
+       <td><%=h "Not assigned"  %></td>
+      <% end %>
+      <% if doc.assigned_by != nil %>
+      <% name=User.find(:first,:conditions=>["id=?",doc.assigned_by]) %>
+      <td><%=h name.login %></td>
+      <% else %>
+       <td><%=h "Not assigned"  %></td>
+      <% end %>
+
+      <% if doc.assigned_to != nil %>
+       <% if User.count(:conditions=>["id=?",doc.assigned_to]) >0 %>
+      <% name=User.find(:first,:conditions=>["id=?",doc.assigned_to]) %>
+        <td><%=h name.login %></td>
+       <% else  %>
+        <td><%=h "Not assigned"  %></td>
+       <% end %>
+      <% else %>
+       <td><%=h "Not assigned"  %></td>
+      <% end %>
+      <td><%=h doc.deadline %></td>
+      <td> <%=h link_to "Remove Project",remove_rfp_rfp_rfp_admin_path(:id=>doc.id),:confirm=>"Do You Want to delete ?.This delete all docments Related to this Project" %> </td>
+      <td> </td>
+    </tr>
+    <% end %>
+    </table>
+
+  <div id="view">
+    </div>

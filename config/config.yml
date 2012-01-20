@@ -1,0 +1,34 @@
+# Configuration options can be accessed as
+# configatron.site_name
+
+development: &local
+    site_name: AgileWorks
+    site_namemobile: AgileWorks
+    site_url: 192.168.1.70:3001
+    
+    company_name: Agileblaze Technologies Pvt Ltd
+    admin_email: admin@baseapp2.local
+    
+    support_name: AgileWorks
+    support_email: support@baseapp2.local
+    
+    site_envnote: Local Server
+
+production:
+    site_name: AgileWorks
+    site_namemobile: AgileWorks
+    site_url: severe-autumn-98.heroku.com/
+    
+    company_name: Agileblaze Technologies Pvt Ltd
+    admin_email: admin@baseapp2.com
+    
+    support_name: AgileWorks
+    support_email: support@baseapp2.com
+    
+    site_envnote: Production Server
+  
+staging:
+  <<: *local
+
+test:
+  <<: *local

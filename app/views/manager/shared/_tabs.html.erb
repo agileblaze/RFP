@@ -1,0 +1,8 @@
+<ul>
+	<% if Setting.count > 0 %>
+	<li style="float: right;"><%= tab_to "Settings", [{:controller => "admin/settings"}] %></li>
+	<% end %>
+	<li><%#= tab_to "Dashboard", [{:controller => "manager/dashboard"}] %></li>
+	<li><%#= tab_to "Myaccount", [{:controller =>"/profiles",:action=>"show",:id=>current_user.id}] %></li>
+	<li><%= tab_to "Dashboard", [{:controller => "rfp/rfp_manager" }] %></li>
+</ul>

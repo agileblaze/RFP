@@ -1,0 +1,2 @@
+module Rfp::RfpAdminHelper
+end

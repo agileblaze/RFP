@@ -1,0 +1,23 @@
+
+<b>Project Name :<a href=http://<%= configatron.site_url %>/rfp/rfp_manager/index><%=h @project.project_name.capitalize %> </a> </b> <br /><br />
+
+
+Deadline :<%=h @project.deadline%><br /><br />
+
+Created By :<% name=User.find(@project.created_by) %><%= name.login.capitalize %><br /><br />
+
+Assigned By :<% name=User.find(@project.assigned_by) %><%= name.login.capitalize %><br /><br />
+--------------------------------------------------------------------------------------------<br />
+
+<%=h  @user1.login.capitalize %> posted a new message:<br /><br />
+
+<%=h  @user.login.capitalize %>,<br />
+
+RFP of a project <%=h @project.project_name.capitalize %> is assigned to you By <%=h  @user1.login.capitalize %> , its deadline -<%=h @project.deadline%><br /><br />
+
+<% if @rfp.project_description!=''  %>
+<h3> Project Description</h3>
+  <%=@rfp.project_description  %><br />
+<% end %>
+Thanks ,<br />
+<%=h  @user1.login.capitalize %><br />
